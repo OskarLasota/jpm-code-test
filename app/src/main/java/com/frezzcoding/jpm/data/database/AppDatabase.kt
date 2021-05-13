@@ -4,8 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.frezzcoding.jpm.data.models.Album
 
-@Database(entities = [], version = 1, exportSchema = false)
+@Database(entities = [Album::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase(){
 
     companion object {

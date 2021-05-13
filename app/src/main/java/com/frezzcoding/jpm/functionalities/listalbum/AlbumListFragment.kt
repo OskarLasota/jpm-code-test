@@ -19,7 +19,9 @@ class AlbumListFragment : Fragment(R.layout.fragment_albumlist) {
     }
 
     private fun setupObservers(){
-
+        viewModel.albums.observe(viewLifecycleOwner, {
+            
+        })
     }
 
 }

@@ -42,7 +42,7 @@ dependencies {
     def room_version = "2.2.6"
     def dagger_hilt = "2.34.1-beta"
     def hilt_hilt = "1.0.0-beta01"
-    def rxjava = "2.1.1"
+    def rxjava = '2.1.1'
     def retrofit = "2.9.0"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -85,5 +85,5 @@ dependencies {
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
-
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
 }

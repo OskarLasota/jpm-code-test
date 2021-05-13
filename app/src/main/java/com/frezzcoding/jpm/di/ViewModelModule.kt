@@ -14,6 +14,7 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(AlbumViewModel::class)
     abstract fun bindAlbumViewModel(viewModel: AlbumViewModel) : ViewModel
 
 }

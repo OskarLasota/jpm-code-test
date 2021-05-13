@@ -21,9 +21,10 @@ class AlbumViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-
+                    println("here")
+                    println(it.toString())
                 },{
-
+                    println(it.toString())
                 })
         )
     }

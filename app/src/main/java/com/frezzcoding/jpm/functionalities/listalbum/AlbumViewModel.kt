@@ -1,5 +1,6 @@
 package com.frezzcoding.jpm.functionalities.listalbum
 
+import androidx.lifecycle.ViewModel
 import com.frezzcoding.jpm.data.repo.AlbumViewRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -10,8 +11,8 @@ import javax.inject.Inject
 @HiltViewModel
 class AlbumViewModel @Inject constructor(
     private val repo: AlbumViewRepo,
-    val compositeDisposable: CompositeDisposable
-) {
+    private val compositeDisposable: CompositeDisposable
+) : ViewModel() {
 
 
     fun getAlbums() {

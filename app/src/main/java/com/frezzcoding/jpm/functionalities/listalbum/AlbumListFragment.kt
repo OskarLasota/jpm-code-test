@@ -1,4 +1,4 @@
-package com.frezzcoding.jpm.functionalities
+package com.frezzcoding.jpm.functionalities.listalbum
 
 import android.os.Bundle
 import android.view.View

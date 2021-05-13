@@ -10,6 +10,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Singleton
 
 
@@ -27,6 +28,11 @@ object AppModule {
     @Singleton
     fun provideApiService() : ApiService?{
         return ApiClient.build()
+    }
+
+    @Provides
+    fun provideCompositeDisposable() : CompositeDisposable {
+        return CompositeDisposable()
     }
 
 }

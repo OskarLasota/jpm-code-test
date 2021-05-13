@@ -2,6 +2,8 @@ package com.frezzcoding.jpm.di
 
 import android.content.Context
 import androidx.room.Room
+import com.frezzcoding.jpm.data.api.ApiClient
+import com.frezzcoding.jpm.data.api.ApiService
 import com.frezzcoding.jpm.data.database.AppDatabase
 import dagger.Module
 import dagger.Provides
@@ -19,6 +21,12 @@ object AppModule {
     @Singleton
     fun provideDatabase(@ApplicationContext appContext : Context) : AppDatabase {
         return Room.databaseBuilder(appContext, AppDatabase::class.java, "database").build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiService() : ApiService?{
+        return ApiClient.build()
     }
 
 }

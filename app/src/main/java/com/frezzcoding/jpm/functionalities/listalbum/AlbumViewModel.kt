@@ -21,16 +21,24 @@ class AlbumViewModel @Inject constructor(
     private val _albums = MutableLiveData<List<AlbumDto>>()
     val albums: LiveData<List<AlbumDto>> = _albums
 
+    private val _loading = MutableLiveData<Boolean>()
+    val loading : LiveData<Boolean> = _loading
+
+    private val _error = MutableLiveData<String>()
+    val error : LiveData<String> = _error
+
     private fun getAlbums() {
         compositeDisposable.add(
             repo.getAlbums()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { _loading.postValue(true) }
                 .subscribe({ list ->
                     _albums.postValue(list)
                     cacheAlbums(list)
+                    _loading.postValue(false)
                 }, {
-                    //error
+                    _error.postValue(it.toString())
                 })
         )
     }
@@ -39,6 +47,7 @@ class AlbumViewModel @Inject constructor(
         compositeDisposable.add(
             repo.getCachedAlbums()
                 .subscribeOn(Schedulers.io())
+                .doOnSubscribe { _loading.postValue(true) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ list ->
                     if(list.isEmpty()){
@@ -46,8 +55,9 @@ class AlbumViewModel @Inject constructor(
                     }else {
                         _albums.postValue(list)
                     }
+                    _loading.postValue(false)
                 },{
-                    //error
+                    _error.postValue(it.toString())
                 })
         )
     }
@@ -56,11 +66,13 @@ class AlbumViewModel @Inject constructor(
         compositeDisposable.add(
             repo.cacheAlbums(list)
                 .subscribeOn(Schedulers.io())
+                .doOnSubscribe { _loading.postValue(true) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     //success
+                    _loading.postValue(false)
                 },{
-                    //error
+                    _error.postValue(it.toString())
                 })
         )
     }

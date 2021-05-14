@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.frezzcoding.jpm.data.models.AlbumDto
 import com.frezzcoding.jpm.data.repo.AlbumViewRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -22,10 +21,10 @@ class AlbumViewModel @Inject constructor(
     val albums: LiveData<List<AlbumDto>> = _albums
 
     private val _loading = MutableLiveData<Boolean>()
-    val loading : LiveData<Boolean> = _loading
+    val loading: LiveData<Boolean> = _loading
 
     private val _error = MutableLiveData<String>()
-    val error : LiveData<String> = _error
+    val error: LiveData<String> = _error
 
     private fun getAlbums() {
         compositeDisposable.add(
@@ -43,42 +42,38 @@ class AlbumViewModel @Inject constructor(
         )
     }
 
-    fun getCachedAlbums(){
+    fun getCachedAlbums() {
         compositeDisposable.add(
             repo.getCachedAlbums()
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe { _loading.postValue(true) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ list ->
-                    if(list.isEmpty()){
+                    if (list.isEmpty()) {
                         getAlbums()
-                    }else {
+                    } else {
                         _albums.postValue(list)
                     }
                     _loading.postValue(false)
-                },{
+                }, {
                     _error.postValue(it.toString())
                 })
         )
     }
 
-    private fun cacheAlbums(list : List<AlbumDto>){
+    private fun cacheAlbums(list: List<AlbumDto>) {
         compositeDisposable.add(
             repo.cacheAlbums(list)
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe { _loading.postValue(true) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    //success
                     _loading.postValue(false)
-                },{
+                }, {
                     _error.postValue(it.toString())
                 })
         )
     }
-
-
-
 
 
 }

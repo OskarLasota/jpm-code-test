@@ -7,13 +7,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.frezzcoding.jpm.R
-import com.frezzcoding.jpm.data.models.AlbumDto
 import com.frezzcoding.jpm.functionalities.listalbum.adapter.AlbumListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_albumlist.*
 
 @AndroidEntryPoint
-class AlbumListFragment : Fragment(R.layout.fragment_albumlist){
+class AlbumListFragment : Fragment(R.layout.fragment_albumlist) {
 
     private val viewModel by viewModels<AlbumViewModel>()
     private lateinit var albumListAdapter: AlbumListAdapter
@@ -30,7 +29,7 @@ class AlbumListFragment : Fragment(R.layout.fragment_albumlist){
             albumListAdapter.submitList(it)
         })
         viewModel.loading.observe(viewLifecycleOwner, {
-            pb_loading.visibility = if(it) View.VISIBLE else View.GONE
+            pb_loading.visibility = if (it) View.VISIBLE else View.GONE
         })
         viewModel.error.observe(viewLifecycleOwner, {
             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()

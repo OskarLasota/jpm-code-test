@@ -10,7 +10,7 @@ import com.frezzcoding.jpm.data.models.AlbumDto
 class AlbumListAdapter() : ListAdapter<AlbumDto, AlbumViewHolder>(AlbumsDiffUtil()) {
 
 
-    class AlbumsDiffUtil : DiffUtil.ItemCallback<AlbumDto>(){
+    class AlbumsDiffUtil : DiffUtil.ItemCallback<AlbumDto>() {
         override fun areItemsTheSame(oldItem: AlbumDto, newItem: AlbumDto): Boolean {
             return oldItem.id == newItem.id
         }

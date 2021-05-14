@@ -21,7 +21,7 @@ class AlbumListFragment : Fragment(R.layout.fragment_albumlist), AlbumListAdapte
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
         setupObservers()
-        viewModel.getAlbums()
+        viewModel.getCachedAlbums()
     }
 
     private fun setupObservers(){

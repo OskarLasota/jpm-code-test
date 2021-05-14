@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.frezzcoding.jpm.common.UrlProvider
 import com.frezzcoding.jpm.data.api.ApiService
+import com.frezzcoding.jpm.data.database.AlbumDao
 import com.frezzcoding.jpm.data.database.AppDatabase
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -27,6 +28,12 @@ object AppModule {
     @Singleton
     fun provideDatabase(@ApplicationContext appContext: Context): AppDatabase {
         return Room.databaseBuilder(appContext, AppDatabase::class.java, "database").build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideAlbumDao(database: AppDatabase) : AlbumDao{
+        return database.albumDao()
     }
 
     @Provides

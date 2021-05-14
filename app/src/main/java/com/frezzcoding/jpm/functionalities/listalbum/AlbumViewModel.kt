@@ -31,6 +31,7 @@ class AlbumViewModel @Inject constructor(
             repo.getAlbums()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .map { list -> list.sortedBy { it.title } }
                 .doOnSubscribe { _loading.postValue(true) }
                 .subscribe({ list ->
                     _albums.postValue(list)

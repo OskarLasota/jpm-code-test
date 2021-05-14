@@ -3,6 +3,8 @@ package com.frezzcoding.jpm.di
 import android.content.Context
 import androidx.room.Room
 import com.frezzcoding.jpm.common.UrlProvider
+import com.frezzcoding.jpm.common.scheduler.AppScheduler
+import com.frezzcoding.jpm.common.scheduler.SchedulerWrapper
 import com.frezzcoding.jpm.data.api.ApiService
 import com.frezzcoding.jpm.data.database.AlbumDao
 import com.frezzcoding.jpm.data.database.AppDatabase
@@ -59,5 +61,7 @@ object AppModule {
     @Provides
     fun provideUrlProvider() = UrlProvider()
 
+    @Provides
+    fun provideScheduler() : AppScheduler = SchedulerWrapper.getInstance()
 
 }

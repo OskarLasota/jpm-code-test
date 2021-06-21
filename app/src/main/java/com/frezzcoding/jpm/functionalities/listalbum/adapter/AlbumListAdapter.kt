@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.frezzcoding.jpm.R
 import com.frezzcoding.jpm.data.models.AlbumDto
 
-class AlbumListAdapter() : ListAdapter<AlbumDto, AlbumViewHolder>(AlbumsDiffUtil()) {
+class AlbumListAdapter(private val listener : OnAlbumClickListener) : ListAdapter<AlbumDto, AlbumViewHolder>(AlbumsDiffUtil()) {
 
 
     class AlbumsDiffUtil : DiffUtil.ItemCallback<AlbumDto>() {
@@ -29,9 +29,12 @@ class AlbumListAdapter() : ListAdapter<AlbumDto, AlbumViewHolder>(AlbumsDiffUtil
 
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
         getItem(position)?.let { album ->
-            holder.bindTo(album)
+            holder.bindTo(album, listener)
         }
     }
 
+    interface OnAlbumClickListener{
+        fun onItemClick(id : Int)
+    }
 
 }

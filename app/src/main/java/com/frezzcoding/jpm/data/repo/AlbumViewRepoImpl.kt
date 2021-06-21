@@ -24,4 +24,12 @@ class AlbumViewRepoImpl @Inject constructor(private val api : ApiService, privat
             return@defer albumDao.getAlbumList()
         }
     }
+
+    override fun getAlbumData(id : Int): Single<AlbumDto> {
+        return Single.defer{
+            return@defer api.getAlbumById(id)
+        }
+    }
+
+
 }

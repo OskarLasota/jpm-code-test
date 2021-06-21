@@ -8,4 +8,5 @@ interface AlbumViewRepo {
     fun getAlbums() : Single<List<AlbumDto>>
     fun cacheAlbums(list : List<AlbumDto>) : Completable
     fun getCachedAlbums() : Single<List<AlbumDto>>
+    fun getAlbumData(id : Int) : Single<AlbumDto>
 }

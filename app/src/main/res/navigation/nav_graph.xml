@@ -9,5 +9,13 @@
         android:id="@+id/albumListFragment"
         android:name="com.frezzcoding.jpm.functionalities.listalbum.AlbumListFragment"
         tools:layout="@layout/fragment_albumlist"
-        android:label="AlbumListFragment" />
+        android:label="AlbumListFragment" >
+        <action
+            android:id="@+id/action_albumListFragment_to_albumViewFragment"
+            app:destination="@id/albumViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/albumViewFragment"
+        android:name="com.frezzcoding.jpm.functionalities.albumview.AlbumViewFragment"
+        android:label="AlbumViewFragment" />
 </navigation>

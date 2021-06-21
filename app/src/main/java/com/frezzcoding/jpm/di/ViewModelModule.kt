@@ -17,4 +17,9 @@ abstract class ViewModelModule {
     @ViewModelKey(AlbumViewModel::class)
     abstract fun bindAlbumViewModel(viewModel: AlbumViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(com.frezzcoding.jpm.functionalities.albumview.AlbumViewModel::class)
+    abstract fun bindAlbumViewSingleViewModel(viewModel : com.frezzcoding.jpm.functionalities.albumview.AlbumViewModel) : ViewModel
+
 }
